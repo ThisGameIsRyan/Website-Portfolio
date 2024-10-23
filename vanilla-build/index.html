@@ -3,9 +3,353 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla JS Portfolio</title>
+    <meta
+      name="description"
+      content="This is the portfolio for Ryan J. lemley with his many years working in C#, GDScript, html, javascrip, and more."
+    />
+    <title>Ryan's Portfolio</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Audiowide"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      em {
+        font-style: normal;
+      }
+      :root {
+        --dark-gray: #1a2a32;
+        --gray: #394d58;
+        --light-ish-gray: #6f808a;
+        --green: #5af187;
+        --yellow: #f1da5a;
+        --light-gray: #b8c4cf;
+      }
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        list-style: none;
+        font-family: "Audiowide", sans-serif;
+        border: none;
+        color: var(--light-gray);
+      }
+      body {
+        height: 100%;
+        background-color: var(--dark-gray);
+      }
+      .top {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 75px;
+        width: 100%;
+        background-color: var(--gray);
+        color: var(--light-gray);
+      }
+      .dropdown {
+        float: left;
+        overflow: hidden;
+      }
+      .dropdown .dropbtn {
+        margin-left: 25px;
+        padding-bottom: 10px;
+        font-size: 25px;
+        transform: translate(0, 7px);
+        background-color: var(--gray);
+      }
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: var(--light-ish-gray);
+        min-width: 100px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        transform: translate(25px, -2px);
+      }
+      .button {
+        margin: 5px;
+        display: block;
+        text-align: left;
+      }
+      .homebutton {
+        margin-left: 25px;
+        padding-bottom: 10px;
+        font-size: 25px;
+        display: block;
+        transform: translate(0, 7px);
+        color: var(--yellow);
+        text-align: left;
+      }
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      .headingphotos {
+        height: 500px;
+        width: 100%;
+      }
+      .bgimg {
+        height: 500px;
+        width: 100%;
+        object-fit: cover;
+      }
+      .quote {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        height: 500px;
+        width: 500px;
+        transform: translate(100px, -525px);
+        position: relative;
+        color: var(--light-gray);
+        animation: move-right 6s ease-in-out;
+      }
+      .quote-name {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        height: 500px;
+        width: 500px;
+        transform: translate(120px, -967px);
+        position: relative;
+        color: var(--light-ish-gray);
+        animation: name-text 6s ease-in-out;
+      }
+      .headshotimg {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 500px;
+        width: 500px;
+        transform: translate(-300px, -1505px);
+        position: relative;
+        animation: move-left 3s ease-in-out;
+      }
+      .main-body {
+        padding-top: 1px;
+        padding-bottom: 10px;
+        width: 100%;
+        color: var(--light-gray);
+        min-height: 750px;
+      }
+      #grad1 {
+        background-color: var(
+          --gray
+        ); /* For browsers that do not support gradients */
+        background-image: linear-gradient(var(--gray), var(--dark-gray));
+      }
+      .heading2 {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 15px;
+        margin-bottom: 5px;
+        font-size: 30px;
+        width: 50%;
+      }
+      .heading3 {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        font-size: 25px;
+        width: 50%;
+        transform: translate(35px, 0);
+      }
+      .bodytext {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10px;
+        font-size: 20px;
+        width: 50%;
+        color: var(--light-ish-gray);
+        transform: translate(35px, 0);
+      }
+      .bodytext2 {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 20px;
+        width: 50%;
+        color: var(--light-ish-gray);
+        transform: translate(70px, 0);
+      }
+      .bottom {
+        min-height: 150px;
+      }
+      .bottom a {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+        color: var(--gray);
+      }
+      .bottom h2 {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 30px;
+        margin-bottom: 5px;
+        width: 40%;
+        color: var(--gray);
+      }
+      @keyframes move-left {
+        0% {
+          left: 300px;
+        }
+        50% {
+          left: 300px;
+        }
+        100% {
+          left: 0px;
+        }
+      }
+      @keyframes move-right {
+        0% {
+          right: 100px;
+          bottom: -20px;
+          opacity: 0;
+        }
+        25% {
+          right: 100px;
+          bottom: -20px;
+          opacity: 0;
+        }
+        35% {
+          opacity: 0;
+        }
+        50% {
+          right: 0%;
+          bottom: -20px;
+          opacity: 1;
+        }
+        75% {
+          bottom: 0px;
+        }
+      }
+      @keyframes name-text {
+        0% {
+          bottom: 20px;
+          opacity: 0;
+        }
+        60% {
+          bottom: 20px;
+          opacity: 0;
+        }
+        85% {
+          bottom: 0px;
+          opacity: 1;
+        }
+      }
+    </style>
   </head>
   <body>
-    <p>Placeholder</p>
+    <main>
+      <div class="top">
+        <h1><em>Ryan J Lemley</em></h1>
+        <a class="homebutton" href="./">Home</a>
+        <div class="dropdown">
+          <button class="dropbtn">
+            Programing
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a class="button" href="programing/template.html"><em>C#</em></a>
+            <a class="button" href="programing/"><em>GDScript</em></a>
+            <a class="button" href="programing/"><em>Html/CSS</em></a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">
+            Music
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a class="button" href="music/"><em>2024</em></a>
+            <a class="button" href="music/"><em>2023</em></a>
+            <a class="button" href="music/"><em>2021</em></a>
+            <a class="button" href="music/"><em>2020</em></a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">
+            3D Art
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a class="button" href="3d-art/"><em>2024</em></a>
+            <a class="button" href="3d-art/"><em>2023</em></a>
+          </div>
+        </div>
+      </div>
+      <div class="headingphotos">
+        <img
+          class="bgimg"
+          src="images/background.png"
+          alt="A 3d render of a light house with rough seas"
+        />
+        <h2 class="quote">
+          I've always been fascinated with the idea that complexity can come out
+          of such simplicity.
+        </h2>
+        <h3 class="quote-name">-Will Wright</h3>
+        <img
+          class="headshotimg"
+          src="images/Ryan.png"
+          alt="A image of Ryan's headshot"
+        />
+      </div>
+      <div class="main-body" id="grad1">
+        <h2 class="heading2">Learning Journey</h2>
+        <h3 class="bodytext">
+          My programming journey began in late 2019 with Python, where I quickly
+          gained proficiency. This foundational knowledge paved the way for my
+          transition into game development using Unity, a platform I dedicated
+          four years to mastering. In 2023, I adapted to industry changes by
+          shifting to the Godot engine, focusing on self-directed learning to
+          achieve mastery. This transition also allowed me to expand my
+          technical skills to include GLSL (OpenGL Shading Language), enhancing
+          my capabilities in advanced graphics programming. Currently, I am
+          developing a personal portfolio website (the one your looking at) from
+          scratch using HTML and CSS, showcasing my web development skills.
+        </h3>
+
+        <h2 class="heading2">Highlighted Projects</h2>
+        <h3 class="heading3">RPG Tavern Game</h3>
+        <h4 class="bodytext2">
+          Initiated in October 2023, this project focuses on creative
+          storytelling and gameplay mechanics with a humorous RPG concept. My
+          contributions include pathfinding algorithms, terrain generation, and
+          3D modeling.
+        </h4>
+        <h3 class="heading3">Tentet.top Website</h3>
+        <h4 class="bodytext2">
+          A Tetris-inspired game with roguelike elements showcasing innovative
+          gameplay. I am exploring a rewrite in Elixir, HTML, and CSS to enhance
+          web app performance.
+        </h4>
+
+        <h2 class="heading2">Development Philosophy</h2>
+        <h3 class="bodytext">
+          My development philosophy is rooted in strategic planning, inspired by
+          Will Wright's methodology, which emphasizes extensive pre-development
+          design to ensure a solid foundation for game creation. I focus on an
+          iterative design process, utilizing concept art and continuous
+          refinement of game mechanics and user experience to achieve the best
+          results.
+        </h3>
+      </div>
+      <footer class="bottom">
+        <h2>Contact Info:</h2>
+        <a href="mailto:ryanjoelemley@gmail.com">Email</a>
+      </footer>
+    </main>
   </body>
 </html>
