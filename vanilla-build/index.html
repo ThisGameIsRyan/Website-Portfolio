@@ -16,254 +16,27 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <style>
-      em {
-        font-style: normal;
-      }
-      :root {
-        --dark-gray: #1a2a32;
-        --gray: #394d58;
-        --light-ish-gray: #6f808a;
-        --green: #5af187;
-        --yellow: #f1da5a;
-        --light-gray: #b8c4cf;
-      }
-      * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        list-style: none;
-        font-family: "Audiowide", sans-serif;
-        border: none;
-        color: var(--light-gray);
-      }
-      body {
-        height: 100%;
-        background-color: var(--dark-gray);
-      }
-      .top {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 75px;
-        width: 100%;
-        background-color: var(--gray);
-        color: var(--light-gray);
-      }
-      .dropdown {
-        float: left;
-        overflow: hidden;
-      }
-      .dropdown .dropbtn {
-        margin-left: 25px;
-        padding-bottom: 10px;
-        font-size: 25px;
-        transform: translate(0, 7px);
-        background-color: var(--gray);
-      }
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: var(--light-ish-gray);
-        min-width: 100px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-        transform: translate(25px, -2px);
-      }
-      .button {
-        margin: 5px;
-        display: block;
-        text-align: left;
-      }
-      .homebutton {
-        margin-left: 25px;
-        padding-bottom: 10px;
-        font-size: 25px;
-        display: block;
-        transform: translate(0, 7px);
-        color: var(--yellow);
-        text-align: left;
-      }
-      .dropdown:hover .dropdown-content {
-        display: block;
-      }
-      .headingphotos {
-        height: 500px;
-        width: 100%;
-      }
-      .bgimg {
-        height: 500px;
-        width: 100%;
-        object-fit: cover;
-      }
-      .quote {
-        display: flex;
-        align-items: center;
-        margin-left: auto;
-        margin-right: auto;
-        height: 500px;
-        width: 500px;
-        transform: translate(100px, -525px);
-        position: relative;
-        color: var(--light-gray);
-        animation: move-right 6s ease-in-out;
-      }
-      .quote-name {
-        display: flex;
-        align-items: center;
-        margin-left: auto;
-        margin-right: auto;
-        height: 500px;
-        width: 500px;
-        transform: translate(120px, -967px);
-        position: relative;
-        color: var(--light-ish-gray);
-        animation: name-text 6s ease-in-out;
-      }
-      .headshotimg {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        height: 500px;
-        width: 500px;
-        transform: translate(-300px, -1505px);
-        position: relative;
-        animation: move-left 3s ease-in-out;
-      }
-      .main-body {
-        padding-top: 1px;
-        padding-bottom: 10px;
-        width: 100%;
-        color: var(--light-gray);
-        min-height: 750px;
-      }
-      #grad1 {
-        background-color: var(
-          --gray
-        ); /* For browsers that do not support gradients */
-        background-image: linear-gradient(var(--gray), var(--dark-gray));
-      }
-      .heading2 {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 15px;
-        margin-bottom: 5px;
-        font-size: 30px;
-        width: 50%;
-      }
-      .heading3 {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 10px;
-        margin-bottom: 5px;
-        font-size: 25px;
-        width: 50%;
-        transform: translate(35px, 0);
-      }
-      .bodytext {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 10px;
-        font-size: 20px;
-        width: 50%;
-        color: var(--light-ish-gray);
-        transform: translate(35px, 0);
-      }
-      .bodytext2 {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        font-size: 20px;
-        width: 50%;
-        color: var(--light-ish-gray);
-        transform: translate(70px, 0);
-      }
-      .bottom {
-        min-height: 150px;
-      }
-      .bottom a {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 40%;
-        color: var(--gray);
-      }
-      .bottom h2 {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 30px;
-        margin-bottom: 5px;
-        width: 40%;
-        color: var(--gray);
-      }
-      @keyframes move-left {
-        0% {
-          left: 300px;
-        }
-        50% {
-          left: 300px;
-        }
-        100% {
-          left: 0px;
-        }
-      }
-      @keyframes move-right {
-        0% {
-          right: 100px;
-          bottom: -20px;
-          opacity: 0;
-        }
-        25% {
-          right: 100px;
-          bottom: -20px;
-          opacity: 0;
-        }
-        35% {
-          opacity: 0;
-        }
-        50% {
-          right: 0%;
-          bottom: -20px;
-          opacity: 1;
-        }
-        75% {
-          bottom: 0px;
-        }
-      }
-      @keyframes name-text {
-        0% {
-          bottom: 20px;
-          opacity: 0;
-        }
-        60% {
-          bottom: 20px;
-          opacity: 0;
-        }
-        85% {
-          bottom: 0px;
-          opacity: 1;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
     <main>
+      <div class="top-spacer"></div>
       <div class="top">
         <h1><em>Ryan J Lemley</em></h1>
-        <a class="homebutton" href="./">Home</a>
+        <a class="homebutton-current" href="./">Home</a>
         <div class="dropdown">
           <button class="dropbtn">
             Programing
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a class="button" href="programing/template.html"><em>C#</em></a>
-            <a class="button" href="programing/"><em>GDScript</em></a>
-            <a class="button" href="programing/"><em>Html/CSS</em></a>
+            <a class="button" href="programing/cs.html"><em>C#</em></a>
+            <a class="button" href="programing/gdscript.html"
+              ><em>GDScript</em></a
+            >
+            <a class="button" href="programing/html-css.html"
+              ><em>Html/CSS</em></a
+            >
           </div>
         </div>
         <div class="dropdown">
@@ -272,10 +45,10 @@
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a class="button" href="music/"><em>2024</em></a>
-            <a class="button" href="music/"><em>2023</em></a>
-            <a class="button" href="music/"><em>2021</em></a>
-            <a class="button" href="music/"><em>2020</em></a>
+            <a class="button" href="music/2024.html"><em>2024</em></a>
+            <a class="button" href="music/2023.html"><em>2023</em></a>
+            <a class="button" href="music/2021.html"><em>2021</em></a>
+            <a class="button" href="music/2020.html"><em>2020</em></a>
           </div>
         </div>
         <div class="dropdown">
@@ -284,8 +57,8 @@
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a class="button" href="3d-art/"><em>2024</em></a>
-            <a class="button" href="3d-art/"><em>2023</em></a>
+            <a class="button" href="3d-art/2024.html"><em>2024</em></a>
+            <a class="button" href="3d-art/2023.html"><em>2023</em></a>
           </div>
         </div>
       </div>
@@ -320,6 +93,116 @@
           developing a personal portfolio website (the one your looking at) from
           scratch using HTML and CSS, showcasing my web development skills.
         </h3>
+        <div class="timeline">
+          <div class="line"></div>
+          <div class="content">
+            <div class="date">
+              <h2>2019</h2>
+            </div>
+            <div class="container-right">
+              <h2>Late 2019 - 2021: Learning Phase</h2>
+              <h3>
+                Began programming in Python in late 2019, quickly shifting to C#
+                to work with Unity. Created several projects including mobile
+                clicker games, although some early projects were not saved.
+              </h3>
+            </div>
+            <div class="date">
+              <h2>2021</h2>
+            </div>
+            <div class="container-left">
+              <h2>August 11, 2021: Doomba</h2>
+              <h3>
+                Developed "Doomba," a top-down shooter game. Learned to use
+                Unity's particle system and successfully implemented features
+                like enemy spawning and shooting mechanics.
+              </h3>
+            </div>
+            <div class="date">
+              <h2>2022</h2>
+            </div>
+            <div class="container-right">
+              <h2>March 5, 2022: Build a City</h2>
+              <h3>
+                Created "Build a City," a basic city-building game for a school
+                project, focusing on choices like energy sources and housing
+                types.
+              </h3>
+            </div>
+            <div class="container-left">
+              <h2>May 19, 2022: From Darkness to a Bright Future</h2>
+              <h3>
+                Developed a game inspired by Holocaust research, focusing on the
+                life of survivor and Nobel Prize winner Roland Hoffman.
+              </h3>
+            </div>
+            <div class="container-right">
+              <h2>May 22, 2022: Down the Rooms</h2>
+              <h3>
+                Released a web game "Down the Rooms," featuring innovative
+                visuals and a complex upgrade system. This allowed players to
+                enjoy the game in their browser.
+              </h3>
+            </div>
+            <div class="container-left">
+              <h2>July 17, 2022: Game Jam - Mists of Growth</h2>
+              <h3>
+                Participated in the My First Game Jam and attempted "Mists of
+                Growth," which remained incomplete due to team challenges but
+                served as an important team-building experience.
+              </h3>
+            </div>
+            <div class="date">
+              <h2>2023</h2>
+            </div>
+            <div class="container-right">
+              <h2>April 29, 2023: Pastel Game Jam</h2>
+              <h3>
+                Entered the Pastel Game Jam, handling most aspects solo while
+                receiving art support. The project went into a playable but
+                unfinished state due to time constraints.
+              </h3>
+            </div>
+            <div class="container-left">
+              <h2>June 29, 2023: Rolling Atop It</h2>
+              <h3>
+                Collaborated on "Rolling Atop It," an obstacle course game for
+                Steam, which became more popular than most of my other games due
+                to its engaging cover art.
+              </h3>
+            </div>
+            <div class="container-right">
+              <h2>October 5, 2023: RPG Tavern Game</h2>
+              <h3>
+                Began a long-term RPG Tavern game project, focusing on resource
+                collection and humor. Transitioned from Unity to Godot due to
+                industry changes.
+              </h3>
+            </div>
+            <div class="date">
+              <h2>2024</h2>
+            </div>
+            <div class="container-left">
+              <h2>
+                August 23, 2024: <a href="https://tentet.top">Tentet.Top</a> a
+                Tetris Roguelike
+              </h2>
+              <h3>
+                Started a web-based Tetris-inspired roguelike game using Godot
+                and GDScript, emphasizing multiplayer interactions and roguelike
+                elements.
+              </h3>
+            </div>
+            <div class="container-right">
+              <h2>October 21, 2024: Personal Portfolio Website</h2>
+              <h3>
+                Initiated the creation of a personal portfolio website to
+                showcase projects, using HTML and CSS, with plans to integrate
+                playable games.
+              </h3>
+            </div>
+          </div>
+        </div>
 
         <h2 class="heading2">Highlighted Projects</h2>
         <h3 class="heading3">RPG Tavern Game</h3>
