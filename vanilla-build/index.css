@@ -134,6 +134,7 @@ body {
   height: 500px;
   width: 500px;
   position: absolute;
+  object-fit: cover;
   top: 75px;
   left: 50vw;
   transform: translate(-30vw, 0);
