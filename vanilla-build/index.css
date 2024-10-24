@@ -258,6 +258,7 @@ body {
   }
   100% {
     height: 42px;
+    box-shadow: black;
   }
 }
 .timeline {
@@ -273,7 +274,7 @@ body {
   height: 100%;
   border-radius: 3px;
   background-color: var(--light-gray);
-  transform: translate(50vw, 0px);
+  transform: translate(34.5vw, 0px);
   margin-left: -10px;
   z-index: 0;
 }
@@ -281,6 +282,7 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  transform: translate(-15.5vw, 0px);
   width: 0;
 }
 .date {
@@ -295,41 +297,21 @@ body {
   border-radius: 15px;
   border-style: solid;
 }
-.container-right {
+.container {
   margin: 10px;
   margin-left: 1vw;
   border-width: 4px;
   border-color: var(--light-gray);
   width: 30vw;
-  max-width: 575px;
   padding: 5px;
   border-radius: 15px;
   border-style: solid;
   background-color: var(--gray);
 }
-.container-right h3 {
+.container h3 {
   margin-left: 20px;
   color: var(--light-ish-gray);
 }
-.container-left {
-  display: grid;
-  position: relative;
-  justify-content: left;
-  margin: 10px;
-  margin-left: max(-31vw, -595px);
-  border-width: 4px;
-  border-color: var(--light-gray);
-  width: 30vw;
-  max-width: 575px;
-  padding: 5px;
-  border-radius: 15px;
-  border-style: solid;
-  background-color: var(--gray);
-}
-.container-left h3 {
-  margin-left: 20px;
-  color: var(--light-ish-gray);
-}
-.container-left a {
+.container a {
   color: var(--yellow);
 }
