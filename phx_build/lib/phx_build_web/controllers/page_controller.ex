@@ -6,4 +6,8 @@ defmodule PhxBuildWeb.PageController do
     # so skip the default app layout.
     render(conn, :home, layout: false)
   end
+
+  def progcs(conn, _params) do
+    render(conn, :progcs, layout: false)
+  end
 end
