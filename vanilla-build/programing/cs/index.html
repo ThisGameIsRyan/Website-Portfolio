@@ -12,47 +12,19 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <link rel="stylesheet" href="../../style.css" />
   </head>
   <body>
     <div class="top-spacer"></div>
-    <div class="top">
-      <h1><em>Ryan J Lemley</em></h1>
-      <a class="homebutton" href="../../">Home</a>
-      <div class="dropdown">
-        <button class="dropbtn-current">
-          Programing
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-          <a class="button-current" href="../cs/"><em>C#</em></a>
-          <a class="button" href="../gdscript/"><em>GDScript</em></a>
-          <a class="button" href="../html-css/"><em>Html/CSS</em></a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn">
-          Music
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-          <a class="button" href="../../music/2024/"><em>2024</em></a>
-          <a class="button" href="../../music/2023/"><em>2023</em></a>
-          <a class="button" href="../../music/2021/"><em>2021</em></a>
-          <a class="button" href="../../music/2020/"><em>2020</em></a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn">
-          3D Art
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-          <a class="button" href="../../3d-art/2024/"><em>2024</em></a>
-          <a class="button" href="../../3d-art/2023/"><em>2023</em></a>
-        </div>
-      </div>
-    </div>
+    <nav>
+      <div class="top" id="nav-placeholder"></div>
+      <script>
+        $(function () {
+          $("#nav-placeholder").load("../nav.html");
+        });
+      </script>
+    </nav>
     <main class="main-body" id="grad1">
       <div class="body-box">
         <h2 class="heading2">The Math behind Mesh Generation</h2>

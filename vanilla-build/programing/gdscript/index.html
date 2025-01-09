@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ryan C#</title>
+    <title>Ryan GD Script</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Audiowide"
@@ -12,48 +12,218 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <link rel="stylesheet" href="../../style.css" />
   </head>
   <body>
     <div class="top-spacer"></div>
-    <div class="top">
-      <h1><em>Ryan J Lemley</em></h1>
-      <a class="homebutton" href="../../">Home</a>
-      <div class="dropdown">
-        <button class="dropbtn-current">
-          Programing
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-          <a class="button" href="../cs/"><em>C#</em></a>
-          <a class="button-current" href="../gdscript/"><em>GDScript</em></a>
-          <a class="button" href="../html-css/"><em>Html/CSS</em></a>
-        </div>
+    <nav>
+      <div class="top" id="nav-placeholder"></div>
+      <script>
+        $(function () {
+          $("#nav-placeholder").load("../nav.html");
+        });
+      </script>
+    </nav>
+    <main class="main-body" id="grad1">
+      <div class="body-box">
+        <h2 class="heading2">Free Cam for Debugging</h2>
+        <h3 class="heading3">
+          Introduction
+          <p class="bodytext">
+            This article outlines the process of creating a "Free Cam" system
+            using GDScript, primarily for debugging purposes. It's designed to
+            be a part of my portfolio, demonstrating my skills to potential
+            employers and colleagues. The key features include controlling
+            camera speed via the scroll wheel, customizable key mappings for
+            camera movement, and intuitive mouse controls.
+          </p>
+        </h3>
+        <h3 class="heading3">
+          Section 1: Setup and Input Configuration
+          <p class="bodytext">
+            To start, let's go through setting up the input variables. This
+            allows for an intuitive experience when controlling the camera. The
+            input system:
+          </p>
+          <ul class="bodytext">
+            <li>
+              <b>Key Mappings:</b>
+              Use the WASD or arrow keys to move the camera. These are mapped to
+              actions in Godot's Input Map (e.g., move up, move down).
+            </li>
+            <li>
+              <b>Input Map Configuration:</b>
+              <ol class="bodytext">
+                <li>Navigate to Project Settings > Input Map.</li>
+                <li>
+                  Add new actions and assign keys or mouse inputs to these
+                  actions.
+                </li>
+                <li>
+                  This configuration allows you to bind multiple keys to a
+                  single movement action.
+                </li>
+              </ol>
+            </li>
+          </ul>
+          <img
+            class="img"
+            src="../../images/input-map.jpg"
+            alt="A low-poly 3D terrain showcasing coastal cliffs, grassy hills, and polygonal water—an artistic representation of the mathematical principles behind mesh generation."
+          />
+        </h3>
+        <h3 class="heading3">
+          Section 2: Implementing Camera Movement
+          <p class="bodytext">
+            Next, we convert these inputs into actual camera movements within
+            the game:
+          </p>
+          <ul class="bodytext">
+            <li>
+              <b>Camera Translation:</b>
+              By mapping the defined inputs to camera movement actions, the
+              camera can move in any direction.
+            </li>
+            <li>
+              <b>Speed Control:</b>
+              Adjust speed through the scroll wheel, allowing fine control over
+              how fast you navigate the environment.
+            </li>
+            <script src="../prism.js"></script>
+            <pre><code class="language-gdscript"
+              >func _process(delta: float) -> void:
+    # Up and down
+    if Input.is_action_pressed("move_down"):
+        global_position += -transform.basis.y * Global.MovementSpeed * delta
+    elif Input.is_action_pressed("move_up"):
+        global_position += transform.basis.y * Global.MovementSpeed * delta
+    # Forward and backward
+    if Input.is_action_pressed("move_forward"):
+        global_position += -transform.basis.z * Global.MovementSpeed * delta
+    elif Input.is_action_pressed("move_backward"):
+        global_position += transform.basis.z * Global.MovementSpeed * delta
+    # Left and right
+    if Input.is_action_pressed("move_left"):
+        global_position += -transform.basis.x * Global.MovementSpeed * delta
+    elif Input.is_action_pressed("move_right"):
+        global_position += transform.basis.x * Global.MovementSpeed * delta
+
+func handle_movement_speed(event): 
+    # Scrollwheel used to increase and decrease movement speed
+    if event.is_action_pressed("increase_speed"):
+        Global.MovementSpeed += 0.5
+    elif event.is_action_pressed("decrease_speed"):
+        Global.MovementSpeed -= 0.5
+    Global.MovementSpeed = clamp(Global.MovementSpeed, 0.5, 250)</code></pre>
+          </ul>
+        </h3>
+        <h3 class="heading3">
+          Section 3: Saving and Loading System
+          <p class="bodytext">
+            To enhance the debugging experience, the system can save and load
+            camera positions:
+          </p>
+          <ul class="bodytext">
+            <li>
+              <b>Saving State:</b>
+              Save camera rotation and position using JSON formatting.
+            </li>
+            <li>
+              <b>Loading State:</b>
+              When the game starts, load the last saved state to continue
+              debugging seamlessly without relocating the camera position.
+            </li>
+            <pre><code class="language-gdscript">func _notification(what):
+    # Save position and rotation when program closes
+    if what == NOTIFICATION_WM_CLOSE_REQUEST:
+        var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+        var save_data: Dictionary = {
+            "position" : position,
+            "rotation" : rotation,
+            "camera_rot" : camera.rotation
+        }
+        var json_string = JSON.stringify(save_data)
+        save_file.store_line(json_string)
+        get_tree().quit() # default behavior
+
+func _ready():
+    # Load position and rotation
+    Global = get_tree().root.get_node("/root/Global")
+  
+    if not FileAccess.file_exists("user://savegame.save"):
+        return # Error! We don't have a save to load.
+      
+    var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
+    while save_file.get_position() < save_file.get_length():
+        if not save_file.eof_reached():
+            var current_line = JSON.parse_string(save_file.get_line())
+            if current_line:
+              
+                position = Vector3(string_to_vector3(current_line["position"]))
+                rotation = Vector3(string_to_vector3(current_line["rotation"]))
+                camera.rotation = Vector3(string_to_vector3(current_line["camera_rot"]))
+          
+static func string_to_vector3(string := "") -> Vector3:
+    if string:
+        var new_string: String = string
+        new_string = new_string.erase(0, 1)
+        new_string = new_string.erase(new_string.length() - 1, 1)
+        var array: Array = new_string.split(", ")
+
+        return Vector3(float(array[0]), float(array[1]), float(array[2]))
+
+    return Vector3.ZERO</code></pre>
+          </ul>
+        </h3>
+        <h3 class="heading3">
+          Section 4: Full-Screen and Mouse Control
+          <p class="bodytext">
+            Lastly, we cover toggling full-screen mode and managing mouse
+            visibility:
+          </p>
+          <ul class="bodytext">
+            <li>
+              <b>Toggle Mouse Visibility:</b>
+              Use the Escape key to toggle the mouse cursor's visibility. This
+              helps when needing to switch between camera control and
+              interacting with UI elements.
+            </li>
+            <li>
+              <b>Full-Screen Mode:</b>
+              Enable or disable full screen via input controls to enhance the
+              debugging view.
+            </li>
+            <pre><code class="language-gdscript">func handle_mouse_state(event): # Freeing the mouse
+    if event.is_action_pressed("esc") and !mouse_free:
+        Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+        mouse_free = true
+    elif event.is_action_pressed("esc") and mouse_free:
+        Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+        mouse_free = false
+
+func handle_fullscreen(event):
+    if event.is_action_pressed("f11") and fullscreen:
+        DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+        fullscreen = false
+    elif event.is_action_pressed("f11") and !fullscreen:
+        DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+        fullscreen = true
+</code></pre>
+          </ul>
+        </h3>
+        <h3 class="heading3">
+          Conclusion
+          <p class="bodytext">
+            Setting up a free camera system in GDScript doesn't require complex
+            techniques but rather a clear understanding of input mapping and
+            basic scripting skills. This project is a testament to achieving
+            functionality with simplicity, making it a valuable addition to any
+            developer's toolkit.
+          </p>
+        </h3>
       </div>
-      <div class="dropdown">
-        <button class="dropbtn">
-          Music
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-          <a class="button" href="../../music/2024/"><em>2024</em></a>
-          <a class="button" href="../../music/2023/"><em>2023</em></a>
-          <a class="button" href="../../music/2021/"><em>2021</em></a>
-          <a class="button" href="../../music/2020/"><em>2020</em></a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn">
-          3D Art
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-          <a class="button" href="../../3d-art/2024/"><em>2024</em></a>
-          <a class="button" href="../../3d-art/2023/"><em>2023</em></a>
-        </div>
-      </div>
-    </div>
-    <main class="main-body" id="grad1"></main>
+    </main>
     <footer class="bottom">
       <h2>Contact Info:</h2>
       <a href="mailto:ryanjoelemley@gmail.com">Email</a>
